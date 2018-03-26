@@ -13,4 +13,15 @@
 
 return [
     // ...
+    'db' => [
+        'driver' => 'Pdo',
+        'dsn' => 'mysql:dbname=laboratoire;host=localhost;charset=utf8;',
+        'username' => 'root',
+        'password' => '',
+    ],
+    'service_manager' => [
+        'factories' => [
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+        ],
+    ],
 ];
