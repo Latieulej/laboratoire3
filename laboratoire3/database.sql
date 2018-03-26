@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 26 mars 2018 à 04:05
+-- Généré le :  lun. 26 mars 2018 à 21:53
 -- Version du serveur :  10.1.28-MariaDB
 -- Version de PHP :  7.1.11
 
@@ -68,8 +68,9 @@ INSERT INTO `privilege` (`id`, `valeur`) VALUES
 --
 
 CREATE TABLE `product` (
-  `id` int(100) NOT NULL,
-  `nom` varchar(50) NOT NULL,
+  `id` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `photo` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL,
   `prix` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -78,12 +79,11 @@ CREATE TABLE `product` (
 -- Déchargement des données de la table `product`
 --
 
-INSERT INTO `product` (`id`, `nom`, `description`, `prix`) VALUES
-(1, 'ASUS ZenBook Ultra-Slim Laptop', '13\', neuf.', '549'),
-(2, 'HUAWEI P9', 'Téléphone de la marque Huawei, très peu servi, vendu dans sa boite.', '250'),
-(1, 'ASUS ZenBook Ultra-Slim Laptop', '13\', neuf.', '549'),
-(2, 'HUAWEI P9', 'Téléphone de la marque Huawei, très peu servi, vendu dans sa boite.', '250'),
-(3, 'Appareil photo bridge', 'Lumix F7200, très bon état, vendu avec une housse et deux cartes SD.', '400');
+INSERT INTO `product` (`id`, `nom`, `photo`, `description`, `prix`) VALUES
+(1, 'Voiture', 'img1.jpg', 'Jolie voiture de 2003. ', '1200'),
+(2, 'Ordinateur portable', 'img2.jpg', 'Presque neuf, trés peu servi. Vendu avec une sacoche.', '900'),
+(3, 'Sac à dos', 'img3.jpg', 'L\'indispensable de Dora, toujours à porté de main.', '70'),
+(4, 'Bonhomme de neige', 'img4.jpg', 'Bonhomme de neige', '10');
 
 -- --------------------------------------------------------
 
@@ -92,18 +92,20 @@ INSERT INTO `product` (`id`, `nom`, `description`, `prix`) VALUES
 --
 
 CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(200) NOT NULL,
+  `salt` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`username`, `email`, `password`) VALUES
-('admin', 'admin@admin.ca', 'admin'),
-('user', 'user@admin.ca', 'user');
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `salt`) VALUES
+(1, 'admin', 'admin@admin.ca', '09a8acab3ad09ab2b1572353bd1fbfce9a00d24b34548eccac14fad187720d35', 'azerty'),
+(2, 'user', 'user@admin.ca', '5a4d7d7c339b061242e2fe4baa1b08622e69248b9edc58273afd614d6c926c51', 'azerty');
 
 -- --------------------------------------------------------
 
@@ -141,11 +143,52 @@ ALTER TABLE `privilege`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Index pour la table `userprivilege`
+--
+ALTER TABLE `userprivilege`
+  ADD KEY `userprivilege_user_fk` (`idUser`),
+  ADD KEY `userprivilege_privilege_fk` (`idPrivilege`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `userprivilege`
+--
+ALTER TABLE `userprivilege`
+  ADD CONSTRAINT `userprivilege_privilege_fk` FOREIGN KEY (`idPrivilege`) REFERENCES `privilege` (`id`),
+  ADD CONSTRAINT `userprivilege_user_fk` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
