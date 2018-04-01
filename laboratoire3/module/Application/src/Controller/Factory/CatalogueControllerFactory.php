@@ -4,7 +4,7 @@ namespace Application\Controller\Factory;
 
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
-use Application\Controller\CatalogueControler;
+use Application\Controller\CatalogueController;
 use Application\Model\Product\ProductMapper;
 
 class CatalogueControllerFactory implements FactoryInterface
