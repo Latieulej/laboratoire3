@@ -7,20 +7,20 @@
 
 namespace Application;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
+/*use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
-use Application\Model\Product\ProductMapper;
+use Application\Model\Product\ProductMapper;*/
 
-/*use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\Adapter\AdapterInterface;
 use Interop\Container\ContainerInterface;
 use Application\Model\Product\Product;
-use Application\Model\Product\ProductMapper;*/
+use Application\Model\Product\ProductMapper;
 
-class Module implements ServiceProviderInterface
+class Module implements ConfigProviderInterface, ServiceProviderInterface
 {
     const VERSION = '3.0.3-dev';
 
@@ -33,7 +33,17 @@ class Module implements ServiceProviderInterface
     {
         return [
             'factories' => [
-                ProductMapper::class => InvokableFactory::class,
+                ProductMapper::class => function(ContainerInterface $container, $requestedName) {
+                    $dbAdapter = $container->get(AdapterInterface::class) ;
+
+                    $resultSetPrototype = new ResultSet() ;
+                    $resultSetPrototype->setArrayObjectPrototype(new Product()) ;
+
+                    $tableGateway = new TableGateway('product', $dbAdapter, null, $resultSetPrototype);
+
+                    $mapper = new ProductMapper($tableGateway);
+                    return $mapper;
+                },
             ]
         ];
     }

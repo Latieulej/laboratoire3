@@ -56,4 +56,13 @@ class Product
         $this->pris = $prix ; 
         return $this;
     }
+
+    public function exchangeArray($data)
+    {
+        $this->id = (isset($data['id'])) ? $data['id'] : null;
+        $this->nom = (isset($data['nom'])) ? $data['nom'] : null;
+        $this->photo = (isset($data['photo'])) ? $data['photo'] : null;
+        $this->description = (isset($data['description'])) ? $data['description'] : null;
+        $this->prix = (isset($data['prix'])) ? $data['prix'] : null;
+    }
 }
