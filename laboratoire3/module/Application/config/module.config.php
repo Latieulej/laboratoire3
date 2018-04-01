@@ -59,7 +59,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-            Controller\CatalogueController::class => InvokableFactory::class,
+            Controller\CatalogueController::class => Controller\Factory\CatalogueControllerFactory::class,
         ],
     ],
     'view_manager' => [

@@ -1,15 +1,12 @@
-<?php
+<?php 
 
-namespace Application\Controller;
+namespace Application\Model\Product;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-use Application\Model\Product\ProductMapper;
-
-class CatalogueController extends AbstractActionController
+class ProductMapper
 {
-    /*public function indexAction()
-    {
+    protected $products ;
+
+    public function __construct() {
         $data = [
             1 => [
                 'id' => '1',
@@ -34,37 +31,20 @@ class CatalogueController extends AbstractActionController
             ],
         ] ;
 
-        $products = [] ;
-
         foreach ($data as $product_data) {
-            $product = new \Application\Model\Product\Product();
+            $product = new Product();
             $product->setId($product_data['id'])
                 ->setNom($product_data['nom'])
                 ->setPhoto($product_data['photo'])
                 ->setDescription($product_data['description'])
-                ->setPrix($product_data['prix']);
+                ->setPrix($product_data['prix']) ;
 
-            $products[] = $product;
+            $this->products[] = $product;
         }
-
-        return new ViewModel([
-            'products' => $products,
-        ]);
-    }*/
-
-    private $productMapper;
-
-    public function __construct(ProductMapper $productMapper)
-    {
-        $this->productMapper = $productMapper;
     }
 
-    public function indexAction()
+    public function fetchAll()
     {
-        $products = $this->productMapper->fetchAll();
-
-        return new ViewModel([
-            'products' => $products,
-        ]);
+        return $this->products;
     }
 }
