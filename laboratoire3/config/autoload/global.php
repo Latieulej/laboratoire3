@@ -12,7 +12,6 @@
  */
 
 return [
-    // ...
     'db' => [
         'driver' => 'Pdo',
         'dsn' => 'mysql:dbname=laboratoire;host=localhost;charset=utf8;',

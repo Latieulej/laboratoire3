@@ -34,11 +34,32 @@ return [
                     ],
                 ],
             ],
+            'catalogue' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/catalogue',
+                    'defaults' => [
+                        'controller' => Controller\CatalogueController::class,
+                        'action' => 'index',
+                    ],
+                ],
+            ],
+            'cart' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/cart',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\CatalogueController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [

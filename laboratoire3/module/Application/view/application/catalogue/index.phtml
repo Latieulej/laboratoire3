@@ -1,0 +1,25 @@
+<h1>Liste des produits</h1>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Photo</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->products as $product): ?>
+                <tr>
+                    <td><?= $product->getNom() ?></td>
+                    <td><?= $product->getPhoto() ?></td>
+                    <td><?= $product->getDescription() ?></td>
+                    <td><?= $product->getPrix() ?> $</td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
