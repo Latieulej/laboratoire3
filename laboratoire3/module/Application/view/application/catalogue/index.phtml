@@ -1,25 +1,29 @@
-<h1>Liste des produits</h1>
-<div class="row">
-    <div class="col-xs-12">
-        <table class="table table-condensed table-striped">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Photo</th>
-                    <th>Description</th>
-                    <th>Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($this->products as $product): ?>
-                <tr>
-                    <td><?= $product->getNom() ?></td>
-                    <td><?= $product->getPhoto() ?></td>
-                    <td><?= $product->getDescription() ?></td>
-                    <td><?= $product->getPrix() ?> $</td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+<section class="container">
+    <?php foreach ($this->products as $product): ?>
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?= $product->getNom() ?></h3>
+            </div>
+            <div class="panel-body row">
+                <div class="col-md-3">
+                    <img src="<?= $product->getPhoto() ?>"/>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            Prix : <?= $product->getPrix() ?> <i class="fa fa-usd"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p><?= $product->getDescription() ?></p>
+                    <a href="#" class="btn btn-info">Fiche produit</a>
+                    <button class="btn btn-primary" >Ajouter au panier <i class="fa fa-cart-plus"></i></button>
+                </div>
+                        
+            </div>
+        </div>
     </div>
-</div>
+
+    <?php endforeach; ?>
+</section>

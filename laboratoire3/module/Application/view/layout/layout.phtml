@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('Catalogue')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -13,12 +13,9 @@
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
             ->prependStylesheet($this->basePath('css/style.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-            ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+            ->prependStylesheet('https://bootswatch.com/3/flatly/bootstrap.min.css')
+            ->prependStylesheet('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
         ?>
-
-        <!-- Flatly, Bootstrap theme -->
-         <link rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.min.css">
 
         <!-- Scripts -->
         <?= $this->headScript()
@@ -51,7 +48,7 @@
                             <label for="username">Login</label>
                             <input id="username" name="username" type="text" placeholder="Login" class="form-control" />
                             <label for="password">Mot de passe</label>
-                            <input id="password" name="password" type="password" placeholder="Mot de passe" />
+                            <input id="password" name="password" type="password" placeholder="Mot de passe" class="form-control"/>
                             <button class="btn btn-go btn-primary">Se connecter</button>
                         </div>
                     </form>
