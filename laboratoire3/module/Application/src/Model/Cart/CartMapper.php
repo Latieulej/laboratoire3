@@ -18,7 +18,7 @@ class CartMapper
             ],
             2 => [
                 'id' => '2',
-                'nom' => 'HEllo Wolrd',
+                'nom' => 'Hello Wolrd',
                 'photo' => 'img2.jpg',
                 'prix' => '400',
                 'quantite' => '1',

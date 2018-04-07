@@ -9,6 +9,7 @@ namespace Application;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 use Application\Model\Product\ProductMapper;
 use Application\Model\Cart\CartMapper;
