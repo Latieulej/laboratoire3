@@ -1,0 +1,22 @@
+<div class="jumbotron container">
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Photo</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->carts as $cart): ?>
+                <tr>
+                    <td><?= $cart->getNom() ?></td>
+                    <td><?= $cart->getPhoto() ?></td>
+                    <td><?= $cart->getPrix() ?></td>
+                    <td><?= $cart->getQuantite() ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

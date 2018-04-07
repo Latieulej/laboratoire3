@@ -49,7 +49,7 @@ return [
                 'options' => [
                     'route' => '/cart',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\CartController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -60,6 +60,7 @@ return [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\CatalogueController::class => Controller\Factory\CatalogueControllerFactory::class,
+            Controller\CartController::class => Controller\Factory\CartControllerFactory::class,
         ],
     ],
     'view_manager' => [

@@ -11,6 +11,7 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
 use Application\Model\Product\ProductMapper;
+use Application\Model\Cart\CartMapper;
 
 class Module implements ConfigProviderInterface, ServiceProviderInterface
 {
@@ -26,6 +27,7 @@ class Module implements ConfigProviderInterface, ServiceProviderInterface
         return [
             'factories' => [
                 ProductMapper::class => Model\Product\Factory\ProductMapperFactory::class,
+                CartMapper::class => InvokableFactory::class,
             ]
         ];
     }
