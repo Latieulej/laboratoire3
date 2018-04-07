@@ -8,22 +8,9 @@ class CartMapper
 
     public function __construct()
     {
-        $data = [
-            1 => [
-                'id' => '1',
-                'nom' => "nom du produit",
-                'photo' => 'img1.jpg',
-                'prix' => '250',
-                'quantite' => '3',
-            ],
-            2 => [
-                'id' => '2',
-                'nom' => 'Hello Wolrd',
-                'photo' => 'img2.jpg',
-                'prix' => '400',
-                'quantite' => '1',
-            ],
-        ] ;
+        // On récupère les données stockées dans les cookies
+        $cookie = "[" . $_COOKIE['cart'] . "]" ;
+        $data = JSON_decode($cookie,TRUE) ;
 
         foreach ($data as $cart_data) {
             $cart = new Cart();

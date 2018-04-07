@@ -2,6 +2,8 @@
 
 namespace Application\Model\Product ;
 
+use Application\Model\Cart\Cart;
+
 class Product 
 {
     protected $id ;

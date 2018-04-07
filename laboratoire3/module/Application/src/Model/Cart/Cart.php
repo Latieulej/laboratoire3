@@ -31,6 +31,10 @@ class Cart
         return $this->quantite;
     }
 
+    public function getTotal() {
+        return $this->prix * $this->quantite ;
+    }
+
     //-- SETTERS
     public function setId($id) {
         $this->id = $id ;

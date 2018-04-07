@@ -6,17 +6,25 @@
                 <th>Photo</th>
                 <th>Prix</th>
                 <th>Quantité</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($this->carts as $cart): ?>
+            <?php $total = 0 ; foreach ($this->carts as $cart): ?>
                 <tr>
                     <td><?= $cart->getNom() ?></td>
-                    <td><?= $cart->getPhoto() ?></td>
-                    <td><?= $cart->getPrix() ?></td>
+                    <td><img src="<?= $cart->getPhoto() ?>" /></td>
+                    <td><?= $cart->getPrix() ?> $</td>
                     <td><?= $cart->getQuantite() ?></td>
+                    <td><?= $cart->getTotal() ?> $</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php $total += $cart->getTotal() ; endforeach; ?>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right">Total du panier</td>
+                <td><?php echo $total ; ?> $</td>
+            </tr>
+        </tfoot>
     </table>
 </div>
