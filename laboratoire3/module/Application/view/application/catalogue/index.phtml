@@ -1,49 +1,51 @@
-<section class="container">
-    <?php foreach ($this->products as $product): ?>
-    <?php 
-        $cart = [
-            'id' => $product->getId(),
-            'nom' => $product->getNom(),
-            'photo' => $product->getPhoto(),
-            'prix' => $product->getPrix(),
-            'quantite' => 1,
-         ] ;
-    ?>
-    <div class="row">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= $product->getNom() ?></h3>
-            </div>
-            <div class="panel-body row">
-                <div class="col-md-3">
-                    <img src="<?= $product->getPhoto() ?>"/>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            Prix : <?= $product->getPrix() ?> <i class="fa fa-usd"></i>
+<main id="page-catalogue">
+    <section class="container">
+        <?php foreach ($this->products as $product): ?>
+        <?php 
+            $cart = [
+                'id' => $product->getId(),
+                'nom' => $product->getNom(),
+                'photo' => $product->getPhoto(),
+                'prix' => $product->getPrix(),
+                'quantite' => 1,
+            ] ;
+        ?>
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= $product->getNom() ?></h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="col-md-3">
+                        <img src="img/products/<?= $product->getPhoto() ?>"/>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                Prix : <?= $product->getPrix() ?> <i class="fa fa-usd"></i>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <p><?= $product->getDescription() ?></p>
+                        <a href="./catalogue/<?= $product->getId() ?>" class="btn btn-info">Fiche produit</a>
+                        <button class="btn btn-primary" onclick='addToCart(<?php echo (json_encode($cart)) ?>)' >Ajouter au panier <i class="fa fa-cart-plus"></i></button>
+                    </div>
+                            
                 </div>
-                <div class="col-md-6">
-                    <p><?= $product->getDescription() ?></p>
-                    <a href="./catalogue/<?= $product->getId() ?>" class="btn btn-info">Fiche produit</a>
-                    <button class="btn btn-primary" onclick='addToCart(<?php echo (json_encode($cart)) ?>)' >Ajouter au panier <i class="fa fa-cart-plus"></i></button>
-                </div>
-                        
             </div>
         </div>
-    </div>
 
-    <?php endforeach; ?>
-    <div>
-        <?= $this->paginationControl(
-                    $this->products,     // Paginator
-                    'Sliding',           // Style
-                    'partial/paginator', // You can add file extension but helper actually takes care about it  
-                    []                   // Parameters - none for this time
-                );
-        ?>
-    </div>
-</section>
+        <?php endforeach; ?>
+        <div>
+            <?= $this->paginationControl(
+                        $this->products,     // Paginator
+                        'Sliding',           // Style
+                        'partial/paginator', // You can add file extension but helper actually takes care about it  
+                        []                   // Parameters - none for this time
+                    );
+            ?>
+        </div>
+    </section>
+</main>
 
 <script>
     // GESTION DES COOKIES
