@@ -19,7 +19,8 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        //'controller' => Controller\IndexController::class,
+                        'controller' => Controller\CatalogueController::class,
                         'action'     => 'index',
                     ],
                 ],
@@ -61,7 +62,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            //Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => Controller\Factory\CatalogueControllerFactory::class,
             Controller\CatalogueController::class => Controller\Factory\CatalogueControllerFactory::class,
             Controller\CartController::class => Controller\Factory\CartControllerFactory::class,
         ],
