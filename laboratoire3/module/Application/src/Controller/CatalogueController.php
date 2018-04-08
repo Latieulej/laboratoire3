@@ -18,7 +18,12 @@ class CatalogueController extends AbstractActionController
 
     public function indexAction()
     {
-        $products = $this->productMapper->fetchAll();
+        $pageNumber = (int) $this->params()->fromQuery('page',1);
+
+        //Nombre de produit par page (pagination)
+        $count = 10;
+
+        $products = $this->productMapper->fetchAll($pageNumber, $count);
 
         return new ViewModel([
             'products' => $products,

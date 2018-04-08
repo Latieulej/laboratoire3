@@ -35,9 +35,12 @@ return [
                 ],
             ],
             'catalogue' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
-                    'route' => '/catalogue',
+                    'route' => '/catalogue[/:id]',
+                    'constraints' => [
+                        'id' => '[0-9]*',
+                    ],
                     'defaults' => [
                         'controller' => Controller\CatalogueController::class,
                         'action' => 'index',
