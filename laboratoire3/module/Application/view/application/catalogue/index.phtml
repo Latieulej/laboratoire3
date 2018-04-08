@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-6">
                     <p><?= $product->getDescription() ?></p>
-                    <a href="./products/<?= $product->getId() ?>" class="btn btn-info">Fiche produit</a>
+                    <a href="./catalogue/<?= $product->getId() ?>" class="btn btn-info">Fiche produit</a>
                     <button class="btn btn-primary" onclick='addToCart(<?php echo (json_encode($cart)) ?>)' >Ajouter au panier <i class="fa fa-cart-plus"></i></button>
                 </div>
                         
@@ -34,6 +34,15 @@
     </div>
 
     <?php endforeach; ?>
+    <div>
+        <?= $this->paginationControl(
+                    $this->products,     // Paginator
+                    'Sliding',           // Style
+                    'partial/paginator', // You can add file extension but helper actually takes care about it  
+                    []                   // Parameters - none for this time
+                );
+        ?>
+    </div>
 </section>
 
 <script>
