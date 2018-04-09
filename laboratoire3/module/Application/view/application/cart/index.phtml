@@ -10,23 +10,39 @@
                     <th>Total</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php $total = 0 ; foreach ($this->carts as $cart): ?>
+            <?php $total = 0 ;  if ($this->carts != "") : ?>
+                <tbody>
+                    <?php foreach ($this->carts as $cart): ?>
+                        <tr>
+                            <td><?= $cart->getNom() ?></td>
+                            <td><img src="img/products/<?= $cart->getPhoto() ?>" /></td>
+                            <td><?= $cart->getPrix() ?> $</td>
+                            <td><?= $cart->getQuantite() ?></td>
+                            <td><?= $cart->getTotal() ?> $</td>
+                        </tr>
+                    <?php $total += $cart->getTotal() ; endforeach;?>
+                </tbody>
+                <tfoot>
                     <tr>
-                        <td><?= $cart->getNom() ?></td>
-                        <td><img src="img/products/<?= $cart->getPhoto() ?>" /></td>
-                        <td><?= $cart->getPrix() ?> $</td>
-                        <td><?= $cart->getQuantite() ?></td>
-                        <td><?= $cart->getTotal() ?> $</td>
+                        <td colspan="4" class="text-right"><strong>Total du panier :</strong></td>
+                        <td><?php echo $total ; ?> $</td>
                     </tr>
-                <?php $total += $cart->getTotal() ; endforeach; ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4" class="text-right">Total du panier</td>
-                    <td><?php echo $total ; ?> $</td>
-                </tr>
-            </tfoot>
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            <button class="btn btn-primary" onclick="deleteCart()">Supprimer mon panier <i class="fa fa-times"></i></button>
+                            <button class="btn btn-info" onclick="">Passer au paiement <i class="fa fa-credit-card"></i></button>
+                        </td>
+                    </tr>
+                </tfoot>
+            <?php else : ?>
+                <tbody>
+                    <tr>
+                        <td colspan="5" class="text-center">Vous n'avez aucun produit dans votre panier.</td>
+                    </tr>
+                </tbody>
+            <?php endif; ?>   
         </table>
     </div>
 </main>
+
+<script src="./js/script.js"></script>

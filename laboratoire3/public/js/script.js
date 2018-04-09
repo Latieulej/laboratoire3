@@ -1,8 +1,6 @@
-/*----------------------------------*/
-/*------ AJOUT AU PANIER -----------*/
-/*----------------------------------*/
-
-console.log('Hello') ;
+/*----------------------------------------*/
+/*---------- GESTION DU PANIER -----------*/
+/*----------------------------------------*/
 
 // GESTION DES COOKIES
 function setCookie(cname, cvalue, exdays) {
@@ -40,8 +38,12 @@ function addToCart(produit) {
         setCookie('cart', '', -1);//On supprime le cookie
         setCookie('cart', oldCart + "," + produit, 7); //On créée le nouveau
     }
-    /*console.log(produit);
-    var d = new Date() ;
-    d.setTime(d.getTime() + (7*24*60*60*1000)) ;
-    document.cookie = 'cart =' + JSON.stringify(produit) + ';' + d + ";path=/"; */
+}
+
+// VIDER LE PANIER
+function deleteCart() {
+    if(confirm("Êtes-vous sûr de vouloir supprimer votre panier ?")) { // On redemande confirmation avant la suppression
+        setCookie('cart','',-1) ; // Suppression du cookie
+        location.reload(); // Rechargement de la page
+    } 
 }
