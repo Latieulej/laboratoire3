@@ -10,6 +10,7 @@ namespace Application;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Zend\Db\TableGateway\TableGateway;
 
 return [
     'router' => [
@@ -68,6 +69,13 @@ return [
             Controller\CatalogueController::class => Controller\Factory\CatalogueControllerFactory::class,
             Controller\CartController::class => Controller\Factory\CartControllerFactory::class,
         ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            Services\AuctionTable::class => Services\Factories\AuctionTableFactory::class,
+            Services\AuctionTableGateway::class => Services\Factories\AuctionTableGatewayFactory::class,
+            Services\NavManager::class => Services\Factories\NavManagerFactory::class,
+         ],
     ],
     'view_manager' => [
         'display_not_found_reason' => true,
