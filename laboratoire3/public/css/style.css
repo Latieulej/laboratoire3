@@ -7,6 +7,25 @@
     margin-right: 20px;
 }
 
+/*-- Page catalogue --*/
+
+main#page-catalogue img {
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+/*-- Page panier --*/
+
+main#page-cart img {
+    width: 150px;
+}
+
+/*-- Page détail --*/
+.page-detail img {
+    max-width: 100%;
+    margin-top: 50px;
+}
+
 footer ul {
     color: #149c82;
     font-size: 1.2em;

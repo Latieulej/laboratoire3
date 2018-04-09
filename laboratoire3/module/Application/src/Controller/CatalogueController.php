@@ -29,4 +29,16 @@ class CatalogueController extends AbstractActionController
             'products' => $products,
         ]);
     }
+
+    // Afficher la fiche d'un produit 
+    public function getAction()
+    {
+        $id = (int) $this->params()->fromRoute('id',0); // Récupère l'id dans l'URL
+
+        $product = $this->productMapper->getProduct($id) ; 
+
+        return new ViewModel([
+            'product' => $product,
+        ]) ;
+    }
 }

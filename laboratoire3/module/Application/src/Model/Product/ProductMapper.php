@@ -34,5 +34,21 @@ class ProductMapper
         return $paginator;
     }
 
+    public function getProduct($id)
+    {
+        $id = (int) $id;
+        $rowset = $this->tableGateway->select(['id' => $id]);
+        $row = $rowset->current();
+
+        if (!$row) {
+            throw new RuntimeException(sprintf(
+                'Could not find row with identifier %d',
+                $id
+            )) ;
+        }
+
+        return $row;
+    }
+
 
 }

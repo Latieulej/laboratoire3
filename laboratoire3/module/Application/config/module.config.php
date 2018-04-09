@@ -20,7 +20,8 @@ return [
                 'options' => [
                     'route'    => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        //'controller' => Controller\IndexController::class,
+                        'controller' => Controller\CatalogueController::class,
                         'action'     => 'index',
                     ],
                 ],
@@ -38,8 +39,9 @@ return [
             'catalogue' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/catalogue[/:id]',
+                    'route' => '/catalogue[/:action[/:id]]',
                     'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]*',
                     ],
                     'defaults' => [
@@ -62,7 +64,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            //Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => Controller\Factory\CatalogueControllerFactory::class,
             Controller\CatalogueController::class => Controller\Factory\CatalogueControllerFactory::class,
             Controller\CartController::class => Controller\Factory\CartControllerFactory::class,
         ],
