@@ -9,7 +9,10 @@
                 'prix' => $product->getPrix(),
                 'quantite' => 1,
             ] ;
-        ?>
+        ?> <p>
+        <a href="<?php echo $this->url('catalogue', array('action'=>'table'));?>">Gérer les produits</a>
+        </p>
+
         <div class="row">
             <div class="panel panel-primary">
                 <div class="panel-heading">

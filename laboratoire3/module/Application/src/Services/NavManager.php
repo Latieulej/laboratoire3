@@ -35,22 +35,36 @@ class NavManager
     {
         $url = $this->urlHelper;
         $items = [];
-        
         $items[] = [
             'id' => 'home',
-            'label' => 'Home',
-            'link'  => $url('index')
+            'label' => 'Catalogue',
+            'link'  => $url('home')
         ];
+        
+        $items[] = [
+            'id' => 'catalogue',
+            'label' => 'Accueil',
+            'link'  => $url('catalogue')
+        ];
+        $items[] = [
+            'id' => 'cart',
+            'label' => 'Panier',
+            'link'  => $url('cart')
+        ];
+      
+    
         
         // Display "Login" menu item for not authorized user only. On the other hand,
         // display "Admin" and "Logout" menu items only for authorized users.
         if (!$this->authService->hasIdentity()) {
+           
             $items[] = [
                 'id' => 'login',
                 'label' => 'Sign in',
                 'link'  => $url('login')
             ];
         } else {
+        
             $items[] = [
                 'id' => 'logout',
                 'label' => $this->authService->getIdentity(),

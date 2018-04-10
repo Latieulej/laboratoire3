@@ -23,7 +23,7 @@
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
         ?>
     </head>
-    <body>
+    <!--<body>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="<?= $this->url('home') ?>">Accueil</a></li>
-                        <!--<li><a href="<?= $this->url('catalogue') ?>">Produits</a></li>-->
+                        <!--<li><a href="<?= $this->url('catalogue') ?>">Produits</a></li
                         <li><a href="<?= $this->url('cart') ?>">Panier</a></li>                        
                     </ul>
 
@@ -54,9 +54,23 @@
                     </form>
                 </div>
             </div>
-        </nav>
-        <div class="container">
+        </nav>-->
+        <?php
+        // Check if the activeMenuItemId passed to layout view model
+        // and if so, use it for setting active navbar item.
+        if (isset($activeMenuItemId)) {
+            $this->mainMenu()->setActiveItemId($activeMenuItemId);
+        }
+
+        // Render the navbar
+        echo $this->mainMenu()->render();
+        ?>
+       <div>
             <?= $this->content ?>
+            
+        </div>
+         <!--<div class="container">
+            <?= $this->content ?>-->
             <hr>
             <footer class="container-fluid jumbotron">
                 <div class="row">

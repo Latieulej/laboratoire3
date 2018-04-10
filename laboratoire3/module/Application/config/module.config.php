@@ -77,6 +77,14 @@ return [
             Services\NavManager::class => Services\Factories\NavManagerFactory::class,
          ],
     ],
+    'view_helpers' => [
+        'factories' => [
+            View\Helper\Menu::class => View\Helper\Factory\MenuFactory::class,
+        ],
+        'aliases' => [
+            'mainMenu' => View\Helper\Menu::class
+        ],
+    ],
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,

@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -8,41 +7,16 @@ use Application\Model\Product\Product;
 use Application\Model\Product\ProductMapper;
 use Application\Form\ProductForm; 
 
-class CatalogueController extends AbstractActionController
+class ProductController extends AbstractActionController
 {
-
-    private $productMapper;
-
-    public function __construct(ProductMapper $productMapper)
+    
+    private $tableMapper;
+    public function __construct(TableMapper $tableMapper)
     {
-        $this->productMapper = $productMapper;
+        $this->tableMapper = $tabletMapper;
     }
 
-    public function indexAction()
-    {
-        $pageNumber = (int) $this->params()->fromQuery('page',1);
 
-        //Nombre de produit par page (pagination)
-        $count = 10;
-
-        $products = $this->productMapper->fetchAll($pageNumber, $count);
-
-        return new ViewModel([
-            'products' => $products,
-        ]);
-    }
-
-    // Afficher la fiche d'un produit 
-    public function getAction()
-    {
-        $id = (int) $this->params()->fromRoute('id',0); // Récupère l'id dans l'URL
-
-        $product = $this->productMapper->getProduct($id) ; 
-
-        return new ViewModel([
-            'product' => $product,
-        ]) ;
-    }
     public function addAction()
     {
         $form = new ProductForm();
@@ -110,28 +84,6 @@ class CatalogueController extends AbstractActionController
 
     public function deleteAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-         if (!$id) {
-             return $this->redirect()->toRoute('product');
-         }
-
-         $request = $this->getRequest();
-         if ($request->isPost()) {
-             $del = $request->getPost('del', 'No');
-
-             if ($del == 'Yes') {
-                 $id = (int) $request->getPost('id');
-                 $this->getProductTable()->deleteProduct($id);
-             }
-
-             // Redirect to list of albums
-             return $this->redirect()->toRoute('product');
-         }
-
-         return array(
-             'id'    => $id,
-             'product' => $this->getProductTable()->getProduct($id)
-         );
     }
 
 }
